@@ -48,6 +48,100 @@
         /* Badge de Referencia */
         .ref-badge { display: inline-block; background: #2d3748; color: #a0aec0; padding: 4px 12px; border-radius: 20px; font-size: 0.5em; border: 1px solid #4a5568; margin-bottom: 10px; font-family: 'Courier New', monospace; }
         .ref-badge i { margin-right: 5px; color: #63b3ed; }
+
+        /* ====== Eval UI (compacta para Reveal sin overflow) ====== */
+        .eval-wrap { height: 640px; display: flex; flex-direction: column; justify-content: flex-start; gap: 10px; }
+        .eval-title { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+        .eval-sub { font-size: 12px; color: #a0aec0; margin-top: 2px; }
+        .eval-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+        .q-card {
+            background: rgba(45, 55, 72, 0.55);
+            border: 1px solid #4a5568;
+            border-radius: 12px;
+            padding: 10px;
+        }
+        .q-card h4 { margin: 0; font-size: 14px; color: #fff; font-weight: 700; }
+        .q-meta { font-size: 10px; color: #a0aec0; margin-top: 2px; }
+
+        .q-pts {
+            font-size: 11px;
+            font-weight: 800;
+            color: #f6ad55;
+            border: 1px solid #4a5568;
+            border-radius: 999px;
+            padding: 2px 8px;
+            background: rgba(0,0,0,0.25);
+            white-space: nowrap;
+        }
+
+        .q-field { font-size: 11px; color: #cbd5e0; }
+        .q-input, .q-select {
+            width: 100%;
+            background: rgba(26, 32, 44, 0.85);
+            border: 1px solid #4a5568;
+            border-radius: 10px;
+            padding: 6px 8px;
+            color: #e2e8f0;
+            font-size: 11px;
+            outline: none;
+        }
+        .q-input:focus, .q-select:focus { border-color: #63b3ed; box-shadow: 0 0 0 2px rgba(99,179,237,0.15); }
+
+        .q-score {
+            font-size: 12px;
+            font-weight: 800;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 999px;
+            padding: 2px 8px;
+            background: rgba(0,0,0,0.25);
+        }
+
+        .q-bar {
+            height: 10px;
+            width: 100%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .q-bar-fill { height: 100%; width: 0%; border-radius: 999px; transition: width 200ms ease; }
+
+        .q-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid #4a5568;
+            background: rgba(45,55,72,0.45);
+            color: #e2e8f0;
+            cursor: pointer;
+            user-select: none;
+        }
+        .q-btn:hover { border-color: #63b3ed; transform: translateY(-1px); }
+        .q-badge {
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid #4a5568;
+            background: rgba(0,0,0,0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .q-warn {
+            background: rgba(229, 62, 62, 0.16);
+            border: 1px solid rgba(229, 62, 62, 0.35);
+            border-radius: 12px;
+            padding: 10px;
+            color: #fed7d7;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -375,6 +469,563 @@
                 </div>
             </section>
 
+            <!-- ====== BLOQUE FINAL: Evaluación Interactiva ====== -->
+            <section data-background-gradient="linear-gradient(to bottom right, #111827, #1f2937)">
+
+            <!-- Intro -->
+            <section>
+                <div class="eval-wrap">
+                <div class="eval-title">
+                    <h3 class="text-blue-400 m-0">Evalúa a tu equipo</h3>
+                    <button class="q-btn" onclick="Reveal.down()">
+                    <i class="fas fa-play text-blue-300"></i> Iniciar
+                    </button>
+                </div>
+                <p class="eval-sub">
+                    Responde rápido (2 inputs por criterio). Se calcula puntaje por criterio, por pilar y el total con veto.
+                </p>
+
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <div class="grid grid-cols-3 gap-3 text-xs">
+                    <div>
+                        <div class="text-green-400 font-bold">Arquitectura (35)</div>
+                        <div class="text-gray-400">Escala, latencia, modularidad, fallos</div>
+                    </div>
+                    <div>
+                        <div class="text-blue-400 font-bold">Bienestar (30)</div>
+                        <div class="text-gray-400">Rotación, on-call, desconexión, predictibilidad</div>
+                    </div>
+                    <div>
+                        <div class="text-purple-400 font-bold">Seguridad (35)</div>
+                        <div class="text-gray-400">Cifrado, integridad, accesos, sanitización</div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="q-warn">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <strong>Veto:</strong> si Bienestar &lt; 50% <em>o</em> Rotación &gt; 5%, el software <strong>NO se certifica</strong>.
+                </div>
+
+                <div class="flex gap-2 mt-2">
+                    <button class="q-btn" onclick="window.QEval?.resetAll()">
+                    <i class="fas fa-rotate-left text-gray-300"></i> Reset
+                    </button>
+                    <button class="q-btn" onclick="Reveal.down()">
+                    <i class="fas fa-arrow-down text-blue-300"></i> Empezar con Arquitectura
+                    </button>
+                </div>
+                </div>
+            </section>
+
+            <!-- Pilar 1: Arquitectura -->
+            <section id="eval-arch">
+                <div class="eval-wrap">
+                <div class="eval-title">
+                    <div>
+                    <h3 class="m-0 text-white"><i class="fas fa-server text-green-400 mr-2"></i>Arquitectura</h3>
+                    <div class="eval-sub">Objetivo: diseño modular y performance bajo crecimiento real.</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                    <span id="pill-arch" class="q-score">0 / 35</span>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-arrow-down text-blue-300"></i> Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="q-bar"><div id="bar-arch" class="q-bar-fill" style="background:#22c55e;"></div></div>
+
+                <div class="eval-grid">
+                    <!-- Escalabilidad -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Escalabilidad (HPA)</h4>
+                        <div class="q-meta">Meta: +300% usuarios sin degradación</div>
+                        </div>
+                        <div class="q-pts">10 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Crecimiento probado (%)
+                        <input class="q-input" data-q id="arch_scale_pct" type="number" min="0" max="1000" placeholder="300">
+                        </div>
+                        <div class="q-field">
+                        Evidencia
+                        <select class="q-select" data-q id="arch_scale_ev">
+                            <option value="0">No medido</option>
+                            <option value="0.6">Prueba manual</option>
+                            <option value="1">Prueba automatizada + reporte</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-arch-scale" class="q-score">0 / 10</span>
+                    </div>
+                    </div>
+
+                    <!-- Rendimiento -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Rendimiento</h4>
+                        <div class="q-meta">Meta: latencia &lt; 500ms</div>
+                        </div>
+                        <div class="q-pts">10 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        P95 Latencia (ms)
+                        <input class="q-input" data-q id="arch_latency_ms" type="number" min="0" max="10000" placeholder="500">
+                        </div>
+                        <div class="q-field">
+                        Evidencia
+                        <select class="q-select" data-q id="arch_latency_ev">
+                            <option value="0">No medido</option>
+                            <option value="0.6">Monitoreo básico</option>
+                            <option value="1">APM + SLO/SLA</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-arch-lat" class="q-score">0 / 10</span>
+                    </div>
+                    </div>
+
+                    <!-- Modularidad -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Modularidad</h4>
+                        <div class="q-meta">Meta: Plug-and-Play real (interfaces claras)</div>
+                        </div>
+                        <div class="q-pts">8 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Estructura
+                        <select class="q-select" data-q id="arch_mod_level">
+                            <option value="0.2">Monolito</option>
+                            <option value="0.65">Monolito modular</option>
+                            <option value="1">Microservicios agnósticos</option>
+                        </select>
+                        </div>
+                        <div class="q-field">
+                        Contratos / APIs
+                        <select class="q-select" data-q id="arch_mod_ev">
+                            <option value="0.2">No definidos</option>
+                            <option value="0.7">Parcial</option>
+                            <option value="1">Versionados + pruebas</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-arch-mod" class="q-score">0 / 8</span>
+                    </div>
+                    </div>
+
+                    <!-- Tolerancia a fallos -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Tolerancia a Fallos</h4>
+                        <div class="q-meta">Meta: regresión cero + rollback seguro</div>
+                        </div>
+                        <div class="q-pts">7 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Regresiones (últimos 10 deploys)
+                        <input class="q-input" data-q id="arch_regressions" type="number" min="0" max="10" placeholder="0">
+                        </div>
+                        <div class="q-field">
+                        Estrategia
+                        <select class="q-select" data-q id="arch_fail_ev">
+                            <option value="0.2">Sin rollback</option>
+                            <option value="0.7">Rollback manual</option>
+                            <option value="1">Canary/Blue-Green + rollback</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-arch-fail" class="q-score">0 / 7</span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="q-btn" onclick="Reveal.up()"><i class="fas fa-arrow-up text-gray-300"></i> Regresar</button>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-arrow-down text-blue-300"></i> Bienestar</button>
+                </div>
+                </div>
+            </section>
+
+            <!-- Pilar 2: Bienestar -->
+            <section id="eval-well">
+                <div class="eval-wrap">
+                <div class="eval-title">
+                    <div>
+                    <h3 class="m-0 text-white"><i class="fas fa-heart text-blue-400 mr-2"></i>Bienestar</h3>
+                    <div class="eval-sub">Objetivo: procesos sostenibles, cero héroes y predicción realista.</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                    <span id="pill-well" class="q-score">0 / 30</span>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-arrow-down text-blue-300"></i> Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="q-bar"><div id="bar-well" class="q-bar-fill" style="background:#60a5fa;"></div></div>
+
+                <div class="eval-grid">
+                    <!-- Rotación -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Rotación</h4>
+                        <div class="q-meta">Meta: &lt; 5% anual</div>
+                        </div>
+                        <div class="q-pts">10 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Rotación (% anual)
+                        <input class="q-input" data-q id="well_turnover_pct" type="number" min="0" max="100" placeholder="5">
+                        </div>
+                        <div class="q-field">
+                        Plan de retención
+                        <select class="q-select" data-q id="well_turnover_ev">
+                            <option value="0.2">No</option>
+                            <option value="0.7">Parcial</option>
+                            <option value="1">Formal + seguimiento</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-well-turn" class="q-score">0 / 10</span>
+                    </div>
+                    </div>
+
+                    <!-- On-call -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Salud del On-Call</h4>
+                        <div class="q-meta">Meta: ≤ 2 alertas/semana off-hours</div>
+                        </div>
+                        <div class="q-pts">10 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Alertas off-hours / semana
+                        <input class="q-input" data-q id="well_alerts_week" type="number" min="0" max="100" placeholder="2">
+                        </div>
+                        <div class="q-field">
+                        Runbooks / rotación
+                        <select class="q-select" data-q id="well_oncall_ev">
+                            <option value="0.2">No</option>
+                            <option value="0.7">Sí, básico</option>
+                            <option value="1">Sí, maduro + postmortems</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-well-oncall" class="q-score">0 / 10</span>
+                    </div>
+                    </div>
+
+                    <!-- Desconexión -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Desconexión</h4>
+                        <div class="q-meta">Meta: 100% bloqueo de notificaciones</div>
+                        </div>
+                        <div class="q-pts">5 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Cumplimiento (%)
+                        <input class="q-input" data-q id="well_disconnect_pct" type="number" min="0" max="100" placeholder="100">
+                        </div>
+                        <div class="q-field">
+                        Política enforceable
+                        <select class="q-select" data-q id="well_disconnect_ev">
+                            <option value="0.2">No</option>
+                            <option value="0.7">Parcial</option>
+                            <option value="1">Sí, auditada</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-well-disc" class="q-score">0 / 5</span>
+                    </div>
+                    </div>
+
+                    <!-- Predictibilidad -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Predictibilidad</h4>
+                        <div class="q-meta">Meta: desviación ≤ 10%</div>
+                        </div>
+                        <div class="q-pts">5 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Desviación (%)
+                        <input class="q-input" data-q id="well_dev_pct" type="number" min="0" max="200" placeholder="10">
+                        </div>
+                        <div class="q-field">
+                        Proceso de estimación
+                        <select class="q-select" data-q id="well_pred_ev">
+                            <option value="0.2">Ad-hoc</option>
+                            <option value="0.7">Ritual básico</option>
+                            <option value="1">Histórico + retros</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-well-pred" class="q-score">0 / 5</span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="q-btn" onclick="Reveal.up()"><i class="fas fa-arrow-up text-gray-300"></i> Arquitectura</button>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-arrow-down text-blue-300"></i> Seguridad</button>
+                </div>
+                </div>
+            </section>
+
+            <!-- Pilar 3: Seguridad -->
+            <section id="eval-sec">
+                <div class="eval-wrap">
+                <div class="eval-title">
+                    <div>
+                    <h3 class="m-0 text-white"><i class="fas fa-shield-alt text-purple-400 mr-2"></i>Seguridad</h3>
+                    <div class="eval-sub">Objetivo: security-by-design validable.</div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                    <span id="pill-sec" class="q-score">0 / 35</span>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-arrow-down text-blue-300"></i> Ver reporte</button>
+                    </div>
+                </div>
+
+                <div class="q-bar"><div id="bar-sec" class="q-bar-fill" style="background:#a78bfa;"></div></div>
+
+                <div class="eval-grid">
+                    <!-- Cifrado -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Auditoría de Cifrado</h4>
+                        <div class="q-meta">Meta: AES-256 + TLS 1.3</div>
+                        </div>
+                        <div class="q-pts">12 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Nivel de cifrado
+                        <select class="q-select" data-q id="sec_crypto_level">
+                            <option value="0.2">Parcial / inconsistente</option>
+                            <option value="0.7">Cifrado fuerte, gaps</option>
+                            <option value="1">AES-256 + TLS1.3 end-to-end</option>
+                        </select>
+                        </div>
+                        <div class="q-field">
+                        Auditoría
+                        <select class="q-select" data-q id="sec_crypto_ev">
+                            <option value="0">Nunca</option>
+                            <option value="0.6">Anual</option>
+                            <option value="1">Trimestral + evidencias</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-sec-crypto" class="q-score">0 / 12</span>
+                    </div>
+                    </div>
+
+                    <!-- Integridad -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Integridad de Datos</h4>
+                        <div class="q-meta">Meta: bloqueo total + WORM/Hash</div>
+                        </div>
+                        <div class="q-pts">10 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Bloqueo de alteración (%)
+                        <input class="q-input" data-q id="sec_integrity_pct" type="number" min="0" max="100" placeholder="100">
+                        </div>
+                        <div class="q-field">
+                        Mecanismo
+                        <select class="q-select" data-q id="sec_integrity_ev">
+                            <option value="0.2">Ninguno</option>
+                            <option value="0.7">Hashing</option>
+                            <option value="1">WORM + Hash + alertas</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-sec-int" class="q-score">0 / 10</span>
+                    </div>
+                    </div>
+
+                    <!-- Accesos -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Control de Accesos</h4>
+                        <div class="q-meta">Meta: RBAC + MFA + least privilege</div>
+                        </div>
+                        <div class="q-pts">8 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Modelo
+                        <select class="q-select" data-q id="sec_access_level">
+                            <option value="0.2">Credenciales compartidas</option>
+                            <option value="0.7">RBAC</option>
+                            <option value="1">RBAC + least privilege</option>
+                        </select>
+                        </div>
+                        <div class="q-field">
+                        MFA
+                        <select class="q-select" data-q id="sec_mfa_ev">
+                            <option value="0.2">No</option>
+                            <option value="0.7">Parcial</option>
+                            <option value="1">Sí, obligatorio</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-sec-acc" class="q-score">0 / 8</span>
+                    </div>
+                    </div>
+
+                    <!-- Sanitización -->
+                    <div class="q-card">
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                        <h4>Sanitización (SQLi/XSS)</h4>
+                        <div class="q-meta">Meta: prevención proactiva validada</div>
+                        </div>
+                        <div class="q-pts">5 pts</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mt-2">
+                        <div class="q-field">
+                        Críticas (últ. 90 días)
+                        <input class="q-input" data-q id="sec_vuln_crit" type="number" min="0" max="999" placeholder="0">
+                        </div>
+                        <div class="q-field">
+                        Pipeline
+                        <select class="q-select" data-q id="sec_sanitize_ev">
+                            <option value="0.2">Sin validación</option>
+                            <option value="0.7">Validación básica</option>
+                            <option value="1">Param queries + SAST/DAST</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="q-meta">Score</span>
+                        <span id="s-sec-san" class="q-score">0 / 5</span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="q-btn" onclick="Reveal.up()"><i class="fas fa-arrow-up text-gray-300"></i> Bienestar</button>
+                    <button class="q-btn" onclick="Reveal.down()"><i class="fas fa-file-alt text-blue-300"></i> Reporte</button>
+                </div>
+                </div>
+            </section>
+
+            <!-- Reporte final -->
+            <section id="eval-report">
+                <div class="eval-wrap">
+                <div class="eval-title">
+                    <div>
+                    <h3 class="m-0 text-blue-400">Reporte de desempeño</h3>
+                    <div class="eval-sub">Puntaje total + nivel + diagnóstico rápido.</div>
+                    </div>
+                    <div class="flex gap-2">
+                    <button class="q-btn" onclick="window.QEval?.copyReport()">
+                        <i class="fas fa-copy text-gray-300"></i> Copiar
+                    </button>
+                    <button class="q-btn" onclick="window.QEval?.resetAll()">
+                        <i class="fas fa-rotate-left text-gray-300"></i> Reset
+                    </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <div class="text-gray-300 text-sm">Puntaje total</div>
+                        <div id="r-total" class="q-badge"><i class="fas fa-gauge-high"></i> 0 / 100</div>
+                    </div>
+                    <div class="mt-3">
+                        <div class="q-bar"><div id="bar-total" class="q-bar-fill" style="background:#63b3ed;"></div></div>
+                    </div>
+
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="text-gray-300 text-sm">Nivel</div>
+                        <div id="r-level" class="q-badge"><i class="fas fa-medal"></i> —</div>
+                    </div>
+
+                    <div id="r-veto" class="mt-3 hidden q-warn"></div>
+                    </div>
+
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <div class="text-gray-300 text-sm mb-2">Breakdown</div>
+
+                    <div class="text-xs text-gray-300 flex items-center justify-between">
+                        <span><i class="fas fa-server text-green-400 mr-2"></i>Arquitectura</span>
+                        <span id="r-arch" class="q-score">0 / 35</span>
+                    </div>
+                    <div class="q-bar mt-2"><div id="rbar-arch" class="q-bar-fill" style="background:#22c55e;"></div></div>
+
+                    <div class="text-xs text-gray-300 flex items-center justify-between mt-3">
+                        <span><i class="fas fa-heart text-blue-400 mr-2"></i>Bienestar</span>
+                        <span id="r-well" class="q-score">0 / 30</span>
+                    </div>
+                    <div class="q-bar mt-2"><div id="rbar-well" class="q-bar-fill" style="background:#60a5fa;"></div></div>
+
+                    <div class="text-xs text-gray-300 flex items-center justify-between mt-3">
+                        <span><i class="fas fa-shield-alt text-purple-400 mr-2"></i>Seguridad</span>
+                        <span id="r-sec" class="q-score">0 / 35</span>
+                    </div>
+                    <div class="q-bar mt-2"><div id="rbar-sec" class="q-bar-fill" style="background:#a78bfa;"></div></div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                    <div class="text-gray-300 text-sm mb-2">Top 2 oportunidades</div>
+                    <ul id="r-recos" class="text-xs text-gray-300 list-disc pl-5 m-0"></ul>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="q-btn" onclick="Reveal.up()"><i class="fas fa-arrow-up text-gray-300"></i> Seguridad</button>
+                </div>
+                </div>
+            </section>
+
+            </section>
+            <!-- ====== FIN BLOQUE FINAL ====== -->
+
         </div>
     </div>
 
@@ -401,6 +1052,338 @@
             // Cargar plugins
             plugins: [ RevealZoom, RevealNotes ]
         });
+
+        /* ====== Q-Holístico: Motor de evaluación ====== */
+        (function () {
+        const STORAGE_KEY = "qholistic_eval_v1";
+
+        const $ = (id) => document.getElementById(id);
+        const clamp01 = (x) => Math.max(0, Math.min(1, x));
+        const n = (id, fallback=0) => {
+            const el = $(id);
+            const v = el ? Number(el.value) : fallback;
+            return Number.isFinite(v) ? v : fallback;
+        };
+        const s = (id, fallback="0") => {
+            const el = $(id);
+            return el ? String(el.value ?? fallback) : fallback;
+        };
+
+        // Normalización útil:
+        // "lower is better": v <= good => 1; v >= bad => 0; lineal entre
+        const normLowerBetter = (v, good, bad) => {
+            if (v <= good) return 1;
+            if (v >= bad) return 0;
+            return clamp01((bad - v) / (bad - good));
+        };
+        // "higher is better": v >= good => 1; v <= bad => 0; lineal entre
+        const normHigherBetter = (v, good, bad) => {
+            if (v >= good) return 1;
+            if (v <= bad) return 0;
+            return clamp01((v - bad) / (good - bad));
+        };
+
+        const weightedPts = (maxPts, norm) => Math.round(maxPts * clamp01(norm));
+
+        function calcAll() {
+            // ===== Arquitectura (35) =====
+            const arch = [];
+
+            // Escalabilidad (10): 75% métrica (300%), 25% evidencia
+            {
+            const metric = normHigherBetter(n("arch_scale_pct", 0), 300, 0);
+            const ev = Number(s("arch_scale_ev", "0"));
+            const norm = 0.75 * metric + 0.25 * clamp01(ev);
+            arch.push({ key:"Escalabilidad", max:10, norm, pts: weightedPts(10, norm) });
+            }
+
+            // Rendimiento (10): 500ms bueno, 2000ms malo
+            {
+            const metric = normLowerBetter(n("arch_latency_ms", 2000), 500, 2000);
+            const ev = Number(s("arch_latency_ev", "0"));
+            const norm = 0.75 * metric + 0.25 * clamp01(ev);
+            arch.push({ key:"Rendimiento", max:10, norm, pts: weightedPts(10, norm) });
+            }
+
+            // Modularidad (8): promedio estructura + contratos
+            {
+            const a = Number(s("arch_mod_level", "0.2"));
+            const b = Number(s("arch_mod_ev", "0.2"));
+            const norm = clamp01((a + b) / 2);
+            arch.push({ key:"Modularidad", max:8, norm, pts: weightedPts(8, norm) });
+            }
+
+            // Tolerancia (7): 0 regresiones bueno, 3 malo (en 10 deploys) + estrategia
+            {
+            const metric = normLowerBetter(n("arch_regressions", 3), 0, 3);
+            const ev = Number(s("arch_fail_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            arch.push({ key:"Tolerancia a fallos", max:7, norm, pts: weightedPts(7, norm) });
+            }
+
+            const archPts = arch.reduce((a,c)=>a+c.pts,0);
+            const archMax = 35;
+
+            // ===== Bienestar (30) =====
+            const well = [];
+
+            // Rotación (10): <=5 bueno, 15 malo + plan
+            {
+            const turnover = n("well_turnover_pct", 15);
+            const metric = normLowerBetter(turnover, 5, 15);
+            const ev = Number(s("well_turnover_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            well.push({ key:"Rotación", max:10, norm, pts: weightedPts(10, norm), turnover });
+            }
+
+            // On-call (10): <=2 bueno, 10 malo + runbooks
+            {
+            const metric = normLowerBetter(n("well_alerts_week", 10), 2, 10);
+            const ev = Number(s("well_oncall_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            well.push({ key:"On-call", max:10, norm, pts: weightedPts(10, norm) });
+            }
+
+            // Desconexión (5): % compliance + política
+            {
+            const metric = clamp01(n("well_disconnect_pct", 0) / 100);
+            const ev = Number(s("well_disconnect_ev", "0.2"));
+            const norm = 0.75 * metric + 0.25 * clamp01(ev);
+            well.push({ key:"Desconexión", max:5, norm, pts: weightedPts(5, norm) });
+            }
+
+            // Predictibilidad (5): <=10 bueno, 30 malo + proceso
+            {
+            const metric = normLowerBetter(n("well_dev_pct", 30), 10, 30);
+            const ev = Number(s("well_pred_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            well.push({ key:"Predictibilidad", max:5, norm, pts: weightedPts(5, norm) });
+            }
+
+            const wellPts = well.reduce((a,c)=>a+c.pts,0);
+            const wellMax = 30;
+
+            // ===== Seguridad (35) =====
+            const sec = [];
+
+            // Cifrado (12): nivel + auditoría
+            {
+            const a = Number(s("sec_crypto_level", "0.2"));
+            const b = Number(s("sec_crypto_ev", "0"));
+            const norm = 0.7 * clamp01(a) + 0.3 * clamp01(b);
+            sec.push({ key:"Cifrado", max:12, norm, pts: weightedPts(12, norm) });
+            }
+
+            // Integridad (10): % bloqueo + mecanismo
+            {
+            const metric = clamp01(n("sec_integrity_pct", 0) / 100);
+            const ev = Number(s("sec_integrity_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            sec.push({ key:"Integridad", max:10, norm, pts: weightedPts(10, norm) });
+            }
+
+            // Accesos (8): modelo + mfa
+            {
+            const a = Number(s("sec_access_level", "0.2"));
+            const b = Number(s("sec_mfa_ev", "0.2"));
+            const norm = clamp01((a + b) / 2);
+            sec.push({ key:"Accesos", max:8, norm, pts: weightedPts(8, norm) });
+            }
+
+            // Sanitización (5): 0 criticas bueno, 5 malo + pipeline
+            {
+            const metric = normLowerBetter(n("sec_vuln_crit", 5), 0, 5);
+            const ev = Number(s("sec_sanitize_ev", "0.2"));
+            const norm = 0.7 * metric + 0.3 * clamp01(ev);
+            sec.push({ key:"Sanitización", max:5, norm, pts: weightedPts(5, norm) });
+            }
+
+            const secPts = sec.reduce((a,c)=>a+c.pts,0);
+            const secMax = 35;
+
+            // ===== Total + veto =====
+            const total = archPts + wellPts + secPts; // /100
+            const archPct = Math.round((archPts / archMax) * 100);
+            const wellPct = Math.round((wellPts / wellMax) * 100);
+            const secPct  = Math.round((secPts  / secMax ) * 100);
+
+            const turnover = well.find(x => x.key==="Rotación")?.turnover ?? 999;
+            const veto = (wellPct < 50) || (turnover > 5);
+
+            let level = "No certificado";
+            if (!veto) {
+            if (total >= 90) level = "Nivel Oro";
+            else if (total >= 75) level = "Nivel Plata";
+            else if (total >= 60) level = "Nivel Bronce";
+            else level = "No certificado";
+            }
+
+            // Top 2 oportunidades (menor norm relativo)
+            const allCriteria = [
+            ...arch.map(c => ({...c, pillar:"Arquitectura"})),
+            ...well.map(c => ({...c, pillar:"Bienestar"})),
+            ...sec.map(c => ({...c, pillar:"Seguridad"})),
+            ];
+            allCriteria.sort((a,b) => (a.norm - b.norm));
+            const recos = allCriteria.slice(0,2).map(c => ({
+            text: `${c.pillar}: ${c.key} (${c.pts}/${c.max})`
+            }));
+
+            return {
+            arch, well, sec,
+            archPts, wellPts, secPts,
+            archMax, wellMax, secMax,
+            archPct, wellPct, secPct,
+            total, level, veto, turnover,
+            recos
+            };
+        }
+
+        function render() {
+            const r = calcAll();
+
+            // Arquitectura (criterios)
+            $("s-arch-scale").textContent = `${r.arch[0].pts} / ${r.arch[0].max}`;
+            $("s-arch-lat").textContent   = `${r.arch[1].pts} / ${r.arch[1].max}`;
+            $("s-arch-mod").textContent   = `${r.arch[2].pts} / ${r.arch[2].max}`;
+            $("s-arch-fail").textContent  = `${r.arch[3].pts} / ${r.arch[3].max}`;
+            $("pill-arch").textContent    = `${r.archPts} / ${r.archMax}`;
+            $("bar-arch").style.width     = `${r.archPct}%`;
+
+            // Bienestar
+            $("s-well-turn").textContent  = `${r.well[0].pts} / ${r.well[0].max}`;
+            $("s-well-oncall").textContent= `${r.well[1].pts} / ${r.well[1].max}`;
+            $("s-well-disc").textContent  = `${r.well[2].pts} / ${r.well[2].max}`;
+            $("s-well-pred").textContent  = `${r.well[3].pts} / ${r.well[3].max}`;
+            $("pill-well").textContent    = `${r.wellPts} / ${r.wellMax}`;
+            $("bar-well").style.width     = `${r.wellPct}%`;
+
+            // Seguridad
+            $("s-sec-crypto").textContent = `${r.sec[0].pts} / ${r.sec[0].max}`;
+            $("s-sec-int").textContent    = `${r.sec[1].pts} / ${r.sec[1].max}`;
+            $("s-sec-acc").textContent    = `${r.sec[2].pts} / ${r.sec[2].max}`;
+            $("s-sec-san").textContent    = `${r.sec[3].pts} / ${r.sec[3].max}`;
+            $("pill-sec").textContent     = `${r.secPts} / ${r.secMax}`;
+            $("bar-sec").style.width      = `${r.secPct}%`;
+
+            // Reporte
+            if ($("r-total")) {
+            $("r-total").innerHTML = `<i class="fas fa-gauge-high"></i> ${r.total} / 100`;
+            $("bar-total").style.width = `${r.total}%`;
+
+            // Nivel
+            const icon = r.level.includes("Oro") ? "fa-medal" : r.level.includes("Plata") ? "fa-medal" : r.level.includes("Bronce") ? "fa-medal" : "fa-ban";
+            $("r-level").innerHTML = `<i class="fas ${icon}"></i> ${r.level}`;
+
+            // Breakdown
+            $("r-arch").textContent = `${r.archPts} / ${r.archMax}`;
+            $("r-well").textContent = `${r.wellPts} / ${r.wellMax}`;
+            $("r-sec").textContent  = `${r.secPts} / ${r.secMax}`;
+            $("rbar-arch").style.width = `${r.archPct}%`;
+            $("rbar-well").style.width = `${r.wellPct}%`;
+            $("rbar-sec").style.width  = `${r.secPct}%`;
+
+            // Veto
+            const vetoEl = $("r-veto");
+            if (r.veto) {
+                vetoEl.classList.remove("hidden");
+                vetoEl.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i>
+                <strong>Veto activado:</strong> Bienestar ${r.wellPct}% y/o Rotación ${r.turnover}% &nbsp;→&nbsp; <strong>NO CERTIFICA</strong>`;
+            } else {
+                vetoEl.classList.add("hidden");
+                vetoEl.innerHTML = "";
+            }
+
+            // Recos
+            const ul = $("r-recos");
+            ul.innerHTML = "";
+            r.recos.forEach(x => {
+                const li = document.createElement("li");
+                li.textContent = x.text;
+                ul.appendChild(li);
+            });
+            }
+
+            // Pill text en slides (por si acaso)
+            if ($("pill-arch")) $("pill-arch").textContent = `${r.archPts} / ${r.archMax}`;
+            if ($("pill-well")) $("pill-well").textContent = `${r.wellPts} / ${r.wellMax}`;
+            if ($("pill-sec"))  $("pill-sec").textContent  = `${r.secPts} / ${r.secMax}`;
+
+            saveState();
+            return r;
+        }
+
+        function saveState() {
+            try {
+            const values = {};
+            document.querySelectorAll("[data-q]").forEach(el => {
+                values[el.id] = el.value;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+            } catch (_) {}
+        }
+
+        function loadState() {
+            try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const values = JSON.parse(raw);
+            Object.entries(values).forEach(([id, val]) => {
+                const el = $(id);
+                if (el) el.value = val;
+            });
+            } catch (_) {}
+        }
+
+        function resetAll() {
+            document.querySelectorAll("[data-q]").forEach(el => {
+            if (el.tagName === "SELECT") el.selectedIndex = 0;
+            else el.value = "";
+            });
+            try { localStorage.removeItem(STORAGE_KEY); } catch(_) {}
+            render();
+        }
+
+        async function copyReport() {
+            const r = calcAll();
+            const text =
+        `Q-Holístico | Reporte
+        Total: ${r.total}/100 | ${r.level}${r.veto ? " | VETO: NO CERTIFICA" : ""}
+
+        Arquitectura: ${r.archPts}/${r.archMax}
+        Bienestar: ${r.wellPts}/${r.wellMax}
+        Seguridad: ${r.secPts}/${r.secMax}
+
+        Top oportunidades:
+        - ${r.recos[0]?.text ?? "-"}
+        - ${r.recos[1]?.text ?? "-"}`;
+            try {
+            await navigator.clipboard.writeText(text);
+            } catch (_) {
+            // fallback: prompt
+            window.prompt("Copia el reporte:", text);
+            }
+        }
+
+        function bind() {
+            document.querySelectorAll("[data-q]").forEach(el => {
+            el.addEventListener("input", render);
+            el.addEventListener("change", render);
+            });
+
+            if (window.Reveal && typeof Reveal.on === "function") {
+            Reveal.on("slidechanged", () => render());
+            Reveal.on("ready", () => render());
+            }
+        }
+
+        window.QEval = { render, resetAll, copyReport };
+
+        // init
+        loadState();
+        bind();
+        render();
+        })();
     </script>
 </body>
 </html>
