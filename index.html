@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estándar Q-Holístico</title>
     
+    <!-- Metadatos para compartir en redes/GitHub -->
+    <meta name="description" content="Presentación del Estándar Q-Holístico: Arquitectura, Talento y Blindaje de Datos">
+    <meta name="author" content="Estándar Q-Holístico">
+
+    <!-- Favicon (Incrustado para no depender de archivos externos) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💠</text></svg>">
+    
     <!-- Reveal.js CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css" id="theme">
@@ -53,6 +60,12 @@
                     </div>
                     <p class="text-gray-400 mt-8 text-sm">Una metodología de calidad para el software sostenible.</p>
                 </div>
+                <!-- Notas para el orador (visibles al presionar 'S') -->
+                <aside class="notes">
+                    Bienvenida a todos. Hoy presentamos el Estándar Q-Holístico.
+                    La idea central es que la calidad técnica no puede existir sin calidad humana.
+                    Hablaremos de los 3 pilares y la regla de veto.
+                </aside>
             </section>
 
             <!-- Diapositiva 2: Los 3 Pilares -->
@@ -316,18 +329,26 @@
 
     <!-- Scripts de Reveal.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <!-- Plugins Adicionales para Web (Zoom y Notas) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/zoom/zoom.min.js"></script>
+
     <script>
-        // Inicialización de Reveal
+        // Inicialización de Reveal con Plugins
         Reveal.initialize({
-            hash: true,
+            // Se desactivan hash y history para evitar conflictos en entornos seguros/iframe
+            hash: false, 
+            history: false,
+            
             controls: true,
             progress: true,
             center: true,
-            transition: 'slide', // none/fade/slide/convex/concave/zoom
-            // Ancho y alto responsive
+            transition: 'slide',
             width: 1200,
             height: 700,
-            margin: 0.1
+            margin: 0.1,
+            // Cargar plugins
+            plugins: [ RevealZoom, RevealNotes ]
         });
     </script>
 </body>
