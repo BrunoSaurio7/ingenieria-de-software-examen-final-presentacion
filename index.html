@@ -44,6 +44,10 @@
         /* Estilos específicos para tarjetas de equipo */
         .team-card { background: rgba(45, 55, 72, 0.6); padding: 15px; border-radius: 8px; border: 1px solid #4a5568; display: flex; align-items: center; transition: transform 0.3s; }
         .team-card:hover { transform: translateY(-5px); border-color: #63b3ed; }
+
+        /* Badge de Referencia */
+        .ref-badge { display: inline-block; background: #2d3748; color: #a0aec0; padding: 4px 12px; border-radius: 20px; font-size: 0.5em; border: 1px solid #4a5568; margin-bottom: 10px; font-family: 'Courier New', monospace; }
+        .ref-badge i { margin-right: 5px; color: #63b3ed; }
     </style>
 </head>
 <body>
@@ -57,20 +61,27 @@
                     <div class="mb-6 transform hover:scale-110 transition duration-500">
                         <i class="fas fa-cubes text-7xl text-blue-400 drop-shadow-lg"></i>
                     </div>
-                    <h1 class="text-5xl font-bold text-white mb-4 tracking-wide">Estándar Q-Holístico</h1>
-                    <h3 class="text-2xl text-blue-300 mb-8 font-light">Arquitectura, Talento y Blindaje de Datos</h3>
+                    <h1 class="text-5xl font-bold text-white mb-2 tracking-wide">Estándar Q-Holístico</h1>
+                    <h3 class="text-2xl text-blue-300 mb-6 font-light">Human-Centric Engineering</h3>
                     
-                    <div class="vision-quote text-xl max-w-3xl mx-auto">
+                    <div class="vision-quote text-xl max-w-3xl mx-auto mb-8">
                         "Un sistema no es de calidad si su arquitectura no escala, si sus datos no son íntegros o si el equipo que lo mantiene está agotado."
+                    </div>
+
+                    <!-- Datos Académicos del PDF -->
+                    <div class="text-sm text-gray-400 border-t border-gray-600 pt-4 mt-4 w-2/3 mx-auto">
+                        <p class="m-0 font-bold text-blue-200">Ingeniería de Software 1</p>
+                        <p class="m-0">Prof. Paulina Bustos Arellano</p>
+                        <p class="m-0 text-xs mt-1 opacity-70">17 de Diciembre, 2025</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 1.5: Equipo Error 404 (NUEVA) -->
+            <!-- Diapositiva 1.5: Equipo Error 404 -->
             <section data-background-gradient="linear-gradient(to bottom left, #1a202c, #2d3748)">
                 <div class="flex flex-col items-center justify-center h-full">
                     <h2 class="text-4xl text-blue-400 font-bold mb-2">Equipo Error 404</h2>
-                    <p class="text-gray-400 text-sm mb-10">Ingeniería de Software & Calidad</p>
+                    <p class="text-gray-400 text-sm mb-10">Propuesta Técnica</p>
                     
                     <div class="grid grid-cols-2 gap-6 w-full max-w-4xl px-8">
                         <!-- Integrante 1 -->
@@ -93,7 +104,7 @@
                             <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white mr-4 font-bold text-sm">MZ</div>
                             <span class="text-lg text-gray-200">Mariana Zapata</span>
                         </div>
-                        <!-- Integrante 5 (Centrado) -->
+                        <!-- Integrante 5 -->
                         <div class="team-card col-span-2 md:col-span-2 md:w-1/2 md:mx-auto">
                             <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white mr-4 font-bold text-sm">PM</div>
                             <span class="text-lg text-gray-200">Pablo Melendez</span>
@@ -104,171 +115,186 @@
 
             <!-- Diapositiva 2: Los 3 Pilares -->
             <section>
-                <h3 class="text-blue-400 border-b border-gray-600 pb-2 mb-6">Los 3 Pilares Fundamentales</h3>
-                <p class="mb-8">Evaluación ponderada (Total: 100 Puntos)</p>
+                <h3 class="text-blue-400 border-b border-gray-600 pb-2 mb-6">3 Pilares (Prácticas)</h3>
+                <p class="mb-8 text-gray-300">Marco de referencia para la evaluación de calidad</p>
                 
                 <div class="grid grid-cols-3 gap-4 text-center">
                     <!-- Pilar 1 -->
                     <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105">
                         <i class="fas fa-server text-4xl text-green-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Arquitectura</h4>
-                        <div class="text-3xl font-bold text-green-400 mb-2">35%</div>
-                        <p class="text-xs text-gray-400">Ágil y Escalable. Adaptación y crecimiento.</p>
+                        <div class="text-xs text-gray-400 mb-2 font-mono">ISO/IEC 12207</div>
+                        <div class="text-3xl font-bold text-green-400">35%</div>
                     </div>
 
                     <!-- Pilar 2 -->
                     <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105 border border-blue-500">
                         <i class="fas fa-heart text-4xl text-blue-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Bienestar</h4>
-                        <div class="text-3xl font-bold text-blue-400 mb-2">30%</div>
-                        <p class="text-xs text-gray-400">Sostenibilidad del equipo. El motor humano.</p>
+                        <div class="text-xs text-gray-400 mb-2 font-mono">CMMI Nivel 3</div>
+                        <div class="text-3xl font-bold text-blue-400">30%</div>
                     </div>
 
                     <!-- Pilar 3 -->
                     <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105">
                         <i class="fas fa-shield-alt text-4xl text-purple-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Seguridad</h4>
-                        <div class="text-3xl font-bold text-purple-400 mb-2">35%</div>
-                        <p class="text-xs text-gray-400">Confidencialidad e Integridad de datos.</p>
+                        <div class="text-xs text-gray-400 mb-2 font-mono">IEEE 29148</div>
+                        <div class="text-3xl font-bold text-purple-400">35%</div>
                     </div>
                 </div>
             </section>
 
             <!-- Diapositiva 3: Arquitectura -->
             <section>
-                <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-server text-green-400 text-2xl"></i>
-                    <h3 class="text-2xl text-white m-0">Pilar 1: Arquitectura Ágil y Escalable</h3>
+                <div class="flex flex-col mb-2">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-server text-green-400 text-2xl"></i>
+                        <h3 class="text-2xl text-white m-0">Arquitectura Ágil y Escalable</h3>
+                    </div>
+                    <div class="mt-2">
+                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 12207 & 25010</span>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-400 mb-4">Objetivo: Cambiar sin romperse y escalar sin degradarse.</p>
+                <p class="text-sm text-gray-400 mb-2">Objetivo: Diseño modular para evolución constante.</p>
 
                 <table class="criteria-table">
                     <thead>
                         <tr>
-                            <th width="25%">Criterio</th>
-                            <th width="60%">Descripción Técnica</th>
+                            <th width="30%">Criterio</th>
+                            <th width="55%">Métrica / Descripción Técnica</th>
                             <th width="15%">Peso</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="font-bold">Desacoplamiento</td>
-                            <td>Microservicios/modularitos. APIs agnósticas.</td>
+                            <td class="font-bold">Escalabilidad (HPA)</td>
+                            <td>Soporte incremento de <strong>300%</strong> en usuarios sin degradación.</td>
                             <td class="weight-col">10 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Auto-escalado</td>
-                            <td>HPA (Horizontal Pod Autoscaling) o serverless.</td>
+                            <td class="font-bold">Rendimiento</td>
+                            <td>Latencia <strong>< 500ms</strong> en carga nominal.</td>
                             <td class="weight-col">10 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Madurez CI/CD</td>
-                            <td>Despliegue automatizado. Lead Time < 1 hora.</td>
+                            <td class="font-bold">Modularidad</td>
+                            <td>Microservicios agnósticos (Plug-and-Play).</td>
                             <td class="weight-col">8 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Observabilidad</td>
-                            <td>Logs centralizados, métricas, trazabilidad distribuida.</td>
+                            <td class="font-bold">Tolerancia a Fallos</td>
+                            <td>Regresión cero en despliegues nuevos.</td>
                             <td class="weight-col">7 pts</td>
                         </tr>
                     </tbody>
                 </table>
                 
-                <div class="mt-6 flex items-center gap-4 text-sm bg-gray-800 p-3 rounded">
-                    <i class="fas fa-search text-green-400"></i>
-                    <span><strong>Verificación:</strong> SonarQube (Estático) y JMeter/k6 (Carga).</span>
+                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
+                    <i class="fas fa-check-circle text-green-400"></i>
+                    <span><strong>Prueba:</strong> Carga masiva (JMeter) y análisis estático.</span>
                 </div>
             </section>
 
             <!-- Diapositiva 4: Bienestar -->
             <section>
-                <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-heart text-blue-400 text-2xl"></i>
-                    <h3 class="text-2xl text-white m-0">Pilar 2: Prioridad al Equipo y Descanso</h3>
+                <div class="flex flex-col mb-2">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-heart text-blue-400 text-2xl"></i>
+                        <h3 class="text-2xl text-white m-0">Prioridad al Equipo (CMMI-3)</h3>
+                    </div>
+                    <div class="mt-2">
+                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: CMMI Level 3 & ISO/IEC 12207</span>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-400 mb-4">Objetivo: Eliminar la "deuda de sueño" para reducir la deuda técnica.</p>
+                <p class="text-sm text-gray-400 mb-2">Filosofía: Procesos equilibrados = Código mantenible.</p>
 
                 <table class="criteria-table">
                     <thead>
                         <tr>
-                            <th width="25%">Criterio</th>
-                            <th width="60%">Descripción Humana/Técnica</th>
+                            <th width="30%">Criterio</th>
+                            <th width="55%">Métrica / Descripción Humana</th>
                             <th width="15%">Peso</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="font-bold">Cero Héroes</td>
-                            <td>Sin SPOF humano. Rotación obligatoria de tareas.</td>
+                            <td class="font-bold">Retención y Rotación</td>
+                            <td>Rotación anual <strong>< 5%</strong>. (Mayor a 5% es falla crítica).</td>
                             <td class="weight-col">10 pts</td>
                         </tr>
                         <tr>
                             <td class="font-bold">Salud del On-Call</td>
-                            <td>Max 2 alertas/semana fuera de horario. Si > 2, se congela dev.</td>
+                            <td>Max 2 alertas/semana off-hours. Cero Héroes.</td>
                             <td class="weight-col">10 pts</td>
                         </tr>
                         <tr>
                             <td class="font-bold">Desconexión</td>
-                            <td>Bloqueo notificaciones fuera de horario. Horas extra → 0.</td>
+                            <td>100% cumplimiento en bloqueo de notificaciones.</td>
                             <td class="weight-col">5 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Velocidad Sostenible</td>
-                            <td>Sprints basados en capacidad histórica, no fechas impuestas.</td>
+                            <td class="font-bold">Predictibilidad</td>
+                            <td>Desviación máxima ±10% en estimación vs real.</td>
                             <td class="weight-col">5 pts</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="mt-6 flex items-center gap-4 text-sm bg-gray-800 p-3 rounded">
-                    <i class="fas fa-clipboard-check text-blue-400"></i>
-                    <span><strong>Verificación:</strong> Encuestas eNPS, reportes de guardia y rotación.</span>
+                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
+                    <i class="fas fa-check-circle text-blue-400"></i>
+                    <span><strong>Verificación:</strong> Logs de actividad off-work y tasa de deserción.</span>
                 </div>
             </section>
 
             <!-- Diapositiva 5: Seguridad -->
             <section>
-                <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
-                    <h3 class="text-2xl text-white m-0">Pilar 3: Confidencialidad e Integridad</h3>
+                <div class="flex flex-col mb-2">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
+                        <h3 class="text-2xl text-white m-0">Confidencialidad e Integridad</h3>
+                    </div>
+                    <div class="mt-2">
+                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 25010 & IEEE 29148</span>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-400 mb-4">Objetivo: Confianza como activo principal.</p>
+                <p class="text-sm text-gray-400 mb-2">Objetivo: Security by Design en todas las capas.</p>
 
                 <table class="criteria-table">
                     <thead>
                         <tr>
-                            <th width="25%">Criterio</th>
-                            <th width="60%">Descripción de Seguridad</th>
+                            <th width="30%">Criterio</th>
+                            <th width="55%">Métrica / Descripción de Seguridad</th>
                             <th width="15%">Peso</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="font-bold">Cifrado E2E</td>
-                            <td>AES-256 (Reposo), TLS 1.3 (Tránsito). Gestión KMS/Vault.</td>
+                            <td class="font-bold">Auditoría de Cifrado</td>
+                            <td>Uso total de <strong>AES-256</strong> (reposo) y TLS 1.3 (tránsito).</td>
                             <td class="weight-col">12 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Integridad</td>
-                            <td>Hashing anti-alteración. Logs inmutables (WORM).</td>
+                            <td class="font-bold">Integridad de Datos</td>
+                            <td>Bloqueo del <strong>100%</strong> de intentos de alteración (Hashing/WORM).</td>
                             <td class="weight-col">10 pts</td>
                         </tr>
                         <tr>
-                            <td class="font-bold">Control Acceso</td>
-                            <td>RBAC/ABAC. Mínimo privilegio. MFA Administrativo.</td>
+                            <td class="font-bold">Control de Accesos</td>
+                            <td>Aislamiento de roles (RBAC) inviolable en Pentesting.</td>
                             <td class="weight-col">8 pts</td>
                         </tr>
                         <tr>
                             <td class="font-bold">Sanitización</td>
-                            <td>Prevención SQLi/XSS en cada commit.</td>
+                            <td>Prevención proactiva SQLi/XSS validada.</td>
                             <td class="weight-col">5 pts</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="mt-6 flex items-center gap-4 text-sm bg-gray-800 p-3 rounded">
-                    <i class="fas fa-user-secret text-purple-400"></i>
-                    <span><strong>Verificación:</strong> Pentesting y escaneo OWASP ZAP.</span>
+                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
+                    <i class="fas fa-check-circle text-purple-400"></i>
+                    <span><strong>Verificación:</strong> Pentesting y escaneo de vulnerabilidades.</span>
                 </div>
             </section>
 
@@ -308,10 +334,10 @@
                                 <h4 class="text-red-400 font-bold m-0 uppercase text-lg">Regla de Veto</h4>
                             </div>
                             <p class="text-sm text-white leading-relaxed">
-                                Si el puntaje en <strong>Bienestar del Equipo</strong> es <span class="text-red-400 font-bold">< 50%</span> (menos de 15 pts), el software <strong class="underline decoration-red-500">NO SE CERTIFICA</strong>.
+                                Si el puntaje en <strong>Bienestar</strong> es <span class="text-red-400 font-bold">< 50%</span> (o rotación > 5%), el software <strong class="underline decoration-red-500">NO SE CERTIFICA</strong>.
                             </p>
                             <p class="text-xs text-red-300 mt-2 italic">
-                                "La tecnología no justifica la explotación."
+                                "Un estándar de calidad no es solo técnico, es un acuerdo de sostenibilidad humana."
                             </p>
                         </div>
                     </div>
@@ -324,32 +350,23 @@
 
             <!-- Diapositiva 7: Conclusión -->
             <section>
-                <h3 class="text-blue-400 mb-4">Conclusión y Siguientes Pasos</h3>
+                <h3 class="text-blue-400 mb-4">Visión Integral</h3>
                 
-                <div class="flex gap-6">
-                    <div class="w-1/2 text-left">
-                        <h5 class="text-white border-b border-gray-600 pb-2 mb-3">Resumen</h5>
-                        <p class="text-sm leading-relaxed mb-4">
-                            Transformamos la cultura: de desarrolladores como "recursos" a arquitectos con claridad mental. La sostenibilidad humana es el cimiento de la escalabilidad técnica.
-                        </p>
-                    </div>
-                    
-                    <div class="w-1/2 text-left bg-gray-800 p-4 rounded-lg">
-                        <h5 class="text-green-400 border-b border-gray-600 pb-2 mb-3">Roadmap de Implementación</h5>
-                        <ul class="text-sm space-y-3 list-none ml-0">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Realizar autoevaluación (Gap Analysis).</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Implementar métricas de "Salud del On-Call".</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Automatizar seguridad en CI/CD.</span>
-                            </li>
-                        </ul>
+                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                    <h5 class="text-white border-b border-gray-600 pb-2 mb-4">La excelencia se alcanza con armonía entre:</h5>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-green-400 font-bold mb-1">Robustez</div>
+                            <p class="text-xs text-gray-400">Arquitecturas que crecen con el negocio.</p>
+                        </div>
+                        <div>
+                            <div class="text-purple-400 font-bold mb-1">Confianza</div>
+                            <p class="text-xs text-gray-400">Seguridad e integridad total del dato.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-1">Sostenibilidad</div>
+                            <p class="text-xs text-gray-400">Respeto por el factor humano que construye la tecnología.</p>
+                        </div>
                     </div>
                 </div>
 
