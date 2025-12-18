@@ -5,49 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estándar Q-Holístico</title>
     
-    <!-- Metadatos para compartir en redes/GitHub -->
-    <meta name="description" content="Presentación del Estándar Q-Holístico: Arquitectura, Talento y Blindaje de Datos">
-    <meta name="author" content="Estándar Q-Holístico">
-
-    <!-- Favicon (Incrustado para no depender de archivos externos) -->
+    <!-- Metadatos -->
+    <meta name="description" content="Presentación Interactiva del Estándar Q-Holístico">
+    <meta name="author" content="Equipo Error 404">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💠</text></svg>">
     
-    <!-- Reveal.js CSS -->
+    <!-- Librerías -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css" id="theme">
-    
-    <!-- Tailwind CSS (para diseño interno de slides) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Ajustes personalizados para Reveal + Tailwind */
+        /* Reveal Base */
         .reveal .slides { text-align: left; }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 { text-transform: none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 { text-transform: none; font-family: 'Segoe UI', sans-serif; }
         .reveal p, .reveal li, .reveal td { font-size: 0.8em; line-height: 1.4; }
         
-        /* Tablas personalizadas */
+        /* Tablas y Badges */
         .criteria-table { width: 100%; border-collapse: collapse; font-size: 0.6em !important; margin-top: 20px; }
         .criteria-table th { background-color: #2d3748; color: #63b3ed; padding: 10px; border-bottom: 2px solid #4a5568; text-align: left; }
         .criteria-table td { padding: 10px; border-bottom: 1px solid #4a5568; color: #e2e8f0; }
-        .criteria-table tr:last-child td { border-bottom: none; }
         .weight-col { text-align: center; color: #f6ad55 !important; font-weight: bold; }
+        .ref-badge { display: inline-block; background: #2d3748; color: #a0aec0; padding: 4px 12px; border-radius: 20px; font-size: 0.5em; border: 1px solid #4a5568; margin-bottom: 10px; font-family: 'Courier New', monospace; }
         
-        /* Utilidades */
-        .highlight-box { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; border-left: 5px solid #63b3ed; }
-        .veto-box { background: rgba(229, 62, 62, 0.15); padding: 20px; border-radius: 10px; border-left: 5px solid #e53e3e; margin-top: 20px; }
-        .vision-quote { font-style: italic; color: #a0aec0; border-left: 4px solid #63b3ed; padding-left: 20px; margin: 20px 0; }
-        .slide-footer { position: absolute; bottom: 0; right: 0; font-size: 0.4em; opacity: 0.5; }
-        
-        /* Estilos específicos para tarjetas de equipo */
+        /* Team Cards */
         .team-card { background: rgba(45, 55, 72, 0.6); padding: 15px; border-radius: 8px; border: 1px solid #4a5568; display: flex; align-items: center; transition: transform 0.3s; }
         .team-card:hover { transform: translateY(-5px); border-color: #63b3ed; }
 
-        /* Badge de Referencia */
-        .ref-badge { display: inline-block; background: #2d3748; color: #a0aec0; padding: 4px 12px; border-radius: 20px; font-size: 0.5em; border: 1px solid #4a5568; margin-bottom: 10px; font-family: 'Courier New', monospace; }
-        .ref-badge i { margin-right: 5px; color: #63b3ed; }
+        /* --- ESTILOS FORMULARIO INTERACTIVO --- */
+        .eval-card { background: #1a202c; padding: 15px; border-radius: 8px; border: 1px solid #4a5568; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+        .eval-label { font-size: 0.6em; color: #a0aec0; margin-bottom: 5px; display: block; }
+        .eval-input { width: 100%; background: #2d3748; border: 1px solid #4a5568; color: white; padding: 8px; border-radius: 4px; font-size: 0.7em; }
+        .eval-input:focus { border-color: #63b3ed; outline: none; }
+        
+        /* Checkbox personalizado */
+        .custom-checkbox { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 4px; transition: background 0.2s; }
+        .custom-checkbox:hover { background: rgba(255,255,255,0.05); }
+        .custom-checkbox input { accent-color: #63b3ed; transform: scale(1.2); }
+        .cb-text { font-size: 0.65em; color: #e2e8f0; }
+
+        .btn-next { background: #3182ce; color: white; border: none; padding: 8px 20px; border-radius: 4px; font-size: 0.6em; cursor: pointer; margin-top: 15px; transition: background 0.3s; }
+        .btn-next:hover { background: #2b6cb0; }
+        .btn-calc { background: #38a169; width: 100%; padding: 15px; font-size: 1em; font-weight: bold; margin-top: 20px; }
+        
+        /* Resultados */
+        .result-badge { font-size: 3em; margin-bottom: 10px; }
+        .score-display { font-size: 4em; font-weight: bold; line-height: 1; }
     </style>
 </head>
 <body>
@@ -55,7 +59,7 @@
     <div class="reveal">
         <div class="slides">
 
-            <!-- Diapositiva 1: Portada y Visión -->
+            <!-- 1. Portada -->
             <section data-background-gradient="linear-gradient(to bottom right, #1a202c, #2d3748)">
                 <div class="flex flex-col items-center justify-center h-full text-center">
                     <div class="mb-6 transform hover:scale-110 transition duration-500">
@@ -68,7 +72,6 @@
                         "Un sistema no es de calidad si su arquitectura no escala, si sus datos no son íntegros o si el equipo que lo mantiene está agotado."
                     </div>
 
-                    <!-- Datos Académicos del PDF -->
                     <div class="text-sm text-gray-400 border-t border-gray-600 pt-4 mt-4 w-2/3 mx-auto">
                         <p class="m-0 font-bold text-blue-200">Ingeniería de Software 1</p>
                         <p class="m-0">Prof. Paulina Bustos Arellano</p>
@@ -77,66 +80,39 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 1.5: Equipo Error 404 -->
+            <!-- 1.5. Equipo -->
             <section data-background-gradient="linear-gradient(to bottom left, #1a202c, #2d3748)">
                 <div class="flex flex-col items-center justify-center h-full">
                     <h2 class="text-4xl text-blue-400 font-bold mb-2">Equipo Error 404</h2>
                     <p class="text-gray-400 text-sm mb-10">Propuesta Técnica</p>
                     
                     <div class="grid grid-cols-2 gap-6 w-full max-w-4xl px-8">
-                        <!-- Integrante 1 -->
-                        <div class="team-card">
-                            <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white mr-4 font-bold text-sm">BP</div>
-                            <span class="text-lg text-gray-200">Bruno Pérez</span>
-                        </div>
-                        <!-- Integrante 2 -->
-                        <div class="team-card">
-                            <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white mr-4 font-bold text-sm">FV</div>
-                            <span class="text-lg text-gray-200">Fernando Villalobos</span>
-                        </div>
-                        <!-- Integrante 3 -->
-                        <div class="team-card">
-                            <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white mr-4 font-bold text-sm">PM</div>
-                            <span class="text-lg text-gray-200">Pedro Merino</span>
-                        </div>
-                        <!-- Integrante 4 -->
-                        <div class="team-card">
-                            <div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white mr-4 font-bold text-sm">MZ</div>
-                            <span class="text-lg text-gray-200">Mariana Zapata</span>
-                        </div>
-                        <!-- Integrante 5 -->
-                        <div class="team-card col-span-2 md:col-span-2 md:w-1/2 md:mx-auto">
-                            <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white mr-4 font-bold text-sm">PM</div>
-                            <span class="text-lg text-gray-200">Pablo Melendez</span>
-                        </div>
+                        <div class="team-card"><div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white mr-4 font-bold text-sm">BP</div><span class="text-lg text-gray-200">Bruno Pérez</span></div>
+                        <div class="team-card"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white mr-4 font-bold text-sm">FV</div><span class="text-lg text-gray-200">Fernando Villalobos</span></div>
+                        <div class="team-card"><div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white mr-4 font-bold text-sm">PM</div><span class="text-lg text-gray-200">Pedro Merino</span></div>
+                        <div class="team-card"><div class="w-10 h-10 rounded-full bg-pink-500 flex items-center justify-center text-white mr-4 font-bold text-sm">MZ</div><span class="text-lg text-gray-200">Mariana Zapata</span></div>
+                        <div class="team-card col-span-2 md:w-1/2 md:mx-auto"><div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white mr-4 font-bold text-sm">PM</div><span class="text-lg text-gray-200">Pablo Melendez</span></div>
                     </div>
                 </div>
             </section>
 
-            <!-- Diapositiva 2: Los 3 Pilares -->
+            <!-- 2. Pilares -->
             <section>
                 <h3 class="text-blue-400 border-b border-gray-600 pb-2 mb-6">3 Pilares (Prácticas)</h3>
-                <p class="mb-8 text-gray-300">Marco de referencia para la evaluación de calidad</p>
-                
                 <div class="grid grid-cols-3 gap-4 text-center">
-                    <!-- Pilar 1 -->
-                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105">
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg">
                         <i class="fas fa-server text-4xl text-green-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Arquitectura</h4>
                         <div class="text-xs text-gray-400 mb-2 font-mono">ISO/IEC 12207</div>
                         <div class="text-3xl font-bold text-green-400">35%</div>
                     </div>
-
-                    <!-- Pilar 2 -->
-                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105 border border-blue-500">
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg border border-blue-500">
                         <i class="fas fa-heart text-4xl text-blue-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Bienestar</h4>
                         <div class="text-xs text-gray-400 mb-2 font-mono">CMMI Nivel 3</div>
                         <div class="text-3xl font-bold text-blue-400">30%</div>
                     </div>
-
-                    <!-- Pilar 3 -->
-                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105">
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-lg">
                         <i class="fas fa-shield-alt text-4xl text-purple-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white mb-2">Seguridad</h4>
                         <div class="text-xs text-gray-400 mb-2 font-mono">IEEE 29148</div>
@@ -145,262 +121,315 @@
                 </div>
             </section>
 
-            <!-- Diapositiva 3: Arquitectura -->
+            <!-- 3. Arquitectura (Contenido) -->
             <section>
                 <div class="flex flex-col mb-2">
                     <div class="flex items-center gap-3">
                         <i class="fas fa-server text-green-400 text-2xl"></i>
                         <h3 class="text-2xl text-white m-0">Arquitectura Ágil y Escalable</h3>
                     </div>
-                    <div class="mt-2">
-                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 12207 & 25010</span>
-                    </div>
+                    <div class="mt-2"><span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 12207 & 25010</span></div>
                 </div>
-                <p class="text-sm text-gray-400 mb-2">Objetivo: Diseño modular para evolución constante.</p>
-
                 <table class="criteria-table">
-                    <thead>
-                        <tr>
-                            <th width="30%">Criterio</th>
-                            <th width="55%">Métrica / Descripción Técnica</th>
-                            <th width="15%">Peso</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th width="30%">Criterio</th><th width="55%">Métrica / Descripción Técnica</th><th width="15%">Peso</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td class="font-bold">Escalabilidad (HPA)</td>
-                            <td>Soporte incremento de <strong>300%</strong> en usuarios sin degradación.</td>
-                            <td class="weight-col">10 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Rendimiento</td>
-                            <td>Latencia <strong>< 500ms</strong> en carga nominal.</td>
-                            <td class="weight-col">10 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Modularidad</td>
-                            <td>Microservicios agnósticos (Plug-and-Play).</td>
-                            <td class="weight-col">8 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Tolerancia a Fallos</td>
-                            <td>Regresión cero en despliegues nuevos.</td>
-                            <td class="weight-col">7 pts</td>
-                        </tr>
+                        <tr><td class="font-bold">Escalabilidad (HPA)</td><td>Soporte incremento de <strong>300%</strong> sin degradación.</td><td class="weight-col">10 pts</td></tr>
+                        <tr><td class="font-bold">Rendimiento</td><td>Latencia <strong>< 500ms</strong> en carga nominal.</td><td class="weight-col">10 pts</td></tr>
+                        <tr><td class="font-bold">Modularidad</td><td>Microservicios agnósticos (Plug-and-Play).</td><td class="weight-col">8 pts</td></tr>
+                        <tr><td class="font-bold">Tolerancia a Fallos</td><td>Regresión cero en despliegues nuevos.</td><td class="weight-col">7 pts</td></tr>
                     </tbody>
                 </table>
-                
-                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
-                    <i class="fas fa-check-circle text-green-400"></i>
-                    <span><strong>Prueba:</strong> Carga masiva (JMeter) y análisis estático.</span>
-                </div>
             </section>
 
-            <!-- Diapositiva 4: Bienestar -->
+            <!-- 4. Bienestar (Contenido) -->
             <section>
                 <div class="flex flex-col mb-2">
                     <div class="flex items-center gap-3">
                         <i class="fas fa-heart text-blue-400 text-2xl"></i>
                         <h3 class="text-2xl text-white m-0">Prioridad al Equipo (CMMI-3)</h3>
                     </div>
-                    <div class="mt-2">
-                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: CMMI Level 3 & ISO/IEC 12207</span>
-                    </div>
+                    <div class="mt-2"><span class="ref-badge"><i class="fas fa-book"></i>Ref: CMMI Level 3</span></div>
                 </div>
-                <p class="text-sm text-gray-400 mb-2">Filosofía: Procesos equilibrados = Código mantenible.</p>
-
                 <table class="criteria-table">
-                    <thead>
-                        <tr>
-                            <th width="30%">Criterio</th>
-                            <th width="55%">Métrica / Descripción Humana</th>
-                            <th width="15%">Peso</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th width="30%">Criterio</th><th width="55%">Métrica / Descripción Humana</th><th width="15%">Peso</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td class="font-bold">Retención y Rotación</td>
-                            <td>Rotación anual <strong>< 5%</strong>. (Mayor a 5% es falla crítica).</td>
-                            <td class="weight-col">10 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Salud del On-Call</td>
-                            <td>Max 2 alertas/semana off-hours. Cero Héroes.</td>
-                            <td class="weight-col">10 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Desconexión</td>
-                            <td>100% cumplimiento en bloqueo de notificaciones.</td>
-                            <td class="weight-col">5 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Predictibilidad</td>
-                            <td>Desviación máxima ±10% en estimación vs real.</td>
-                            <td class="weight-col">5 pts</td>
-                        </tr>
+                        <tr><td class="font-bold">Retención y Rotación</td><td>Rotación anual <strong>< 5%</strong>. (Mayor = Falla crítica).</td><td class="weight-col">10 pts</td></tr>
+                        <tr><td class="font-bold">Salud del On-Call</td><td>Max 2 alertas/semana off-hours.</td><td class="weight-col">10 pts</td></tr>
+                        <tr><td class="font-bold">Desconexión</td><td>100% cumplimiento bloqueo notificaciones.</td><td class="weight-col">5 pts</td></tr>
+                        <tr><td class="font-bold">Predictibilidad</td><td>Desviación máxima ±10%.</td><td class="weight-col">5 pts</td></tr>
                     </tbody>
                 </table>
-
-                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
-                    <i class="fas fa-check-circle text-blue-400"></i>
-                    <span><strong>Verificación:</strong> Logs de actividad off-work y tasa de deserción.</span>
-                </div>
             </section>
 
-            <!-- Diapositiva 5: Seguridad -->
+            <!-- 5. Seguridad (Contenido) -->
             <section>
                 <div class="flex flex-col mb-2">
                     <div class="flex items-center gap-3">
                         <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
                         <h3 class="text-2xl text-white m-0">Confidencialidad e Integridad</h3>
                     </div>
-                    <div class="mt-2">
-                        <span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 25010 & IEEE 29148</span>
-                    </div>
+                    <div class="mt-2"><span class="ref-badge"><i class="fas fa-book"></i>Ref: ISO/IEC 25010 & IEEE 29148</span></div>
                 </div>
-                <p class="text-sm text-gray-400 mb-2">Objetivo: Security by Design en todas las capas.</p>
-
                 <table class="criteria-table">
-                    <thead>
-                        <tr>
-                            <th width="30%">Criterio</th>
-                            <th width="55%">Métrica / Descripción de Seguridad</th>
-                            <th width="15%">Peso</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th width="30%">Criterio</th><th width="55%">Métrica / Descripción Seguridad</th><th width="15%">Peso</th></tr></thead>
                     <tbody>
-                        <tr>
-                            <td class="font-bold">Auditoría de Cifrado</td>
-                            <td>Uso total de <strong>AES-256</strong> (reposo) y TLS 1.3 (tránsito).</td>
-                            <td class="weight-col">12 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Integridad de Datos</td>
-                            <td>Bloqueo del <strong>100%</strong> de intentos de alteración (Hashing/WORM).</td>
-                            <td class="weight-col">10 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Control de Accesos</td>
-                            <td>Aislamiento de roles (RBAC) inviolable en Pentesting.</td>
-                            <td class="weight-col">8 pts</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">Sanitización</td>
-                            <td>Prevención proactiva SQLi/XSS validada.</td>
-                            <td class="weight-col">5 pts</td>
-                        </tr>
+                        <tr><td class="font-bold">Auditoría Cifrado</td><td>AES-256 (reposo) y TLS 1.3 (tránsito).</td><td class="weight-col">12 pts</td></tr>
+                        <tr><td class="font-bold">Integridad</td><td>Bloqueo 100% intentos alteración.</td><td class="weight-col">10 pts</td></tr>
+                        <tr><td class="font-bold">Control Accesos</td><td>RBAC inviolable en Pentesting.</td><td class="weight-col">8 pts</td></tr>
+                        <tr><td class="font-bold">Sanitización</td><td>Prevención SQLi/XSS validada.</td><td class="weight-col">5 pts</td></tr>
                     </tbody>
                 </table>
-
-                <div class="mt-4 flex items-center gap-4 text-xs bg-gray-800 p-2 rounded">
-                    <i class="fas fa-check-circle text-purple-400"></i>
-                    <span><strong>Verificación:</strong> Pentesting y escaneo de vulnerabilidades.</span>
+            </section>
+            
+            <!-- 6. Intro a Auditoría -->
+            <section data-background-color="#1a202c">
+                <div class="flex flex-col items-center justify-center">
+                    <i class="fas fa-clipboard-list text-6xl text-blue-400 mb-6"></i>
+                    <h2 class="text-4xl text-white font-bold">Autoevaluación en Vivo</h2>
+                    <p class="text-gray-400 mb-8 max-w-xl text-center">
+                        Vamos a auditar a tu equipo actual basándonos en los 3 pilares del estándar. Sé honesto con las métricas.
+                    </p>
+                    <button onclick="Reveal.next()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded shadow-lg transition transform hover:scale-105">
+                        Iniciar Auditoría <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
                 </div>
             </section>
 
-            <!-- Diapositiva 6: Tablero Final -->
+            <!-- 7. Formulario Arquitectura -->
             <section>
-                <h3 class="text-blue-400 mb-6">Tablero de Certificación</h3>
+                <h3 class="text-green-400 text-xl border-b border-gray-600 pb-2 mb-4"><i class="fas fa-server mr-2"></i>1. Evaluación de Arquitectura (35 pts)</h3>
                 
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="space-y-4 text-left">
-                        <div class="flex items-center p-2 rounded bg-yellow-900 bg-opacity-40 border-l-4 border-yellow-500">
-                            <i class="fas fa-medal text-yellow-500 mr-3 text-2xl"></i>
-                            <div>
-                                <strong class="text-yellow-400 text-lg">Nivel Oro (90-100)</strong>
-                                <div class="text-xs">Excelencia técnica y humana.</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-2 rounded bg-gray-700 bg-opacity-40 border-l-4 border-gray-400">
-                            <i class="fas fa-medal text-gray-400 mr-3 text-2xl"></i>
-                            <div>
-                                <strong class="text-gray-300 text-lg">Nivel Plata (75-89)</strong>
-                                <div class="text-xs">Robusto con mejoras menores.</div>
-                            </div>
-                        </div>
-                        <div class="flex items-center p-2 rounded bg-orange-900 bg-opacity-40 border-l-4 border-orange-600">
-                            <i class="fas fa-medal text-orange-600 mr-3 text-2xl"></i>
-                            <div>
-                                <strong class="text-orange-500 text-lg">Nivel Bronce (60-74)</strong>
-                                <div class="text-xs">Funcional, riesgo de deuda.</div>
-                            </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Columna Izquierda: Inputs Numéricos -->
+                    <div class="space-y-4">
+                        <div class="eval-card">
+                            <label class="eval-label">Latencia promedio (ms)</label>
+                            <input type="number" id="input-latency" class="eval-input" placeholder="Ej: 300" min="0">
+                            <p class="text-xs text-gray-500 mt-1">Debe ser < 500ms</p>
                         </div>
                     </div>
 
-                    <div class="flex flex-col justify-center">
-                        <div class="veto-box">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-exclamation-triangle text-red-500 mr-2 text-xl"></i>
-                                <h4 class="text-red-400 font-bold m-0 uppercase text-lg">Regla de Veto</h4>
-                            </div>
-                            <p class="text-sm text-white leading-relaxed">
-                                Si el puntaje en <strong>Bienestar</strong> es <span class="text-red-400 font-bold">< 50%</span> (o rotación > 5%), el software <strong class="underline decoration-red-500">NO SE CERTIFICA</strong>.
-                            </p>
-                            <p class="text-xs text-red-300 mt-2 italic">
-                                "Un estándar de calidad no es solo técnico, es un acuerdo de sostenibilidad humana."
-                            </p>
-                        </div>
+                    <!-- Columna Derecha: Checkboxes -->
+                    <div class="eval-card space-y-3">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-scaling">
+                            <span class="cb-text">Soporta picos de carga (+300%)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-modular">
+                            <span class="cb-text">Microservicios / Modularidad real</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-cicd">
+                            <span class="cb-text">Pipeline CI/CD maduro (< 1hr deploy)</span>
+                        </label>
                     </div>
                 </div>
                 
-                <div class="mt-4 p-2 bg-gray-800 rounded text-xs text-center text-gray-400">
-                    < 60 pts: No certificado. Riesgo operativo alto.
+                <div class="text-right">
+                    <button onclick="Reveal.next()" class="btn-next">Siguiente Pilar <i class="fas fa-chevron-right ml-1"></i></button>
                 </div>
             </section>
 
-            <!-- Diapositiva 7: Conclusión -->
+            <!-- 8. Formulario Bienestar -->
             <section>
-                <h3 class="text-blue-400 mb-4">Visión Integral</h3>
+                <h3 class="text-blue-400 text-xl border-b border-gray-600 pb-2 mb-4"><i class="fas fa-heart mr-2"></i>2. Evaluación de Bienestar (30 pts)</h3>
                 
-                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
-                    <h5 class="text-white border-b border-gray-600 pb-2 mb-4">La excelencia se alcanza con armonía entre:</h5>
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div>
-                            <div class="text-green-400 font-bold mb-1">Robustez</div>
-                            <p class="text-xs text-gray-400">Arquitecturas que crecen con el negocio.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="eval-card border-red-900 border-opacity-50">
+                            <label class="eval-label text-red-300">Rotación Anual (%) - <span class="font-bold">VETO CHECK</span></label>
+                            <input type="number" id="input-rotation" class="eval-input" placeholder="Ej: 3" min="0" max="100">
+                            <p class="text-xs text-red-400 mt-1">Si > 5%, falla automática.</p>
                         </div>
-                        <div>
-                            <div class="text-purple-400 font-bold mb-1">Confianza</div>
-                            <p class="text-xs text-gray-400">Seguridad e integridad total del dato.</p>
+                        <div class="eval-card">
+                            <label class="eval-label">Alertas On-Call (sem/persona)</label>
+                            <input type="number" id="input-alerts" class="eval-input" placeholder="Ej: 1" min="0">
                         </div>
-                        <div>
-                            <div class="text-blue-400 font-bold mb-1">Sostenibilidad</div>
-                            <p class="text-xs text-gray-400">Respeto por el factor humano que construye la tecnología.</p>
-                        </div>
+                    </div>
+
+                    <div class="eval-card space-y-3">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-disconnect">
+                            <span class="cb-text">Políticas de desconexión respetadas</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-predict">
+                            <span class="cb-text">Estimaciones precisas (±10%)</span>
+                        </label>
+                        <label class="custom-checkbox">
+                            <input type="checkbox" id="check-hero">
+                            <span class="cb-text">Política de "Cero Héroes" activa</span>
+                        </label>
                     </div>
                 </div>
 
-                <div class="mt-12 text-center">
-                    <p class="text-xl font-bold text-white">¿Preguntas?</p>
+                <div class="text-right">
+                    <button onclick="Reveal.next()" class="btn-next">Siguiente Pilar <i class="fas fa-chevron-right ml-1"></i></button>
+                </div>
+            </section>
+
+            <!-- 9. Formulario Seguridad -->
+            <section>
+                <h3 class="text-purple-400 text-xl border-b border-gray-600 pb-2 mb-4"><i class="fas fa-shield-alt mr-2"></i>3. Evaluación de Seguridad (35 pts)</h3>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="eval-card">
+                        <p class="text-sm text-gray-400 mb-3 text-center">Marca las tecnologías activas:</p>
+                        
+                        <label class="custom-checkbox mb-2">
+                            <input type="checkbox" id="check-aes">
+                            <span class="cb-text">Cifrado AES-256 / TLS 1.3</span>
+                        </label>
+                        <label class="custom-checkbox mb-2">
+                            <input type="checkbox" id="check-integrity">
+                            <span class="cb-text">Verificación de Integridad (WORM/Hash)</span>
+                        </label>
+                    </div>
+
+                    <div class="eval-card">
+                        <p class="text-sm text-gray-400 mb-3 text-center">Pruebas y Accesos:</p>
+
+                        <label class="custom-checkbox mb-2">
+                            <input type="checkbox" id="check-rbac">
+                            <span class="cb-text">RBAC (Roles) estricto y MFA</span>
+                        </label>
+                        <label class="custom-checkbox mb-2">
+                            <input type="checkbox" id="check-sanit">
+                            <span class="cb-text">Sanitización Inputs (SQLi/XSS)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="calculateScore()" class="btn-next btn-calc shadow-lg transform transition hover:scale-105">
+                    <i class="fas fa-calculator mr-2"></i> GENERAR REPORTE
+                </button>
+            </section>
+
+            <!-- 10. Resultados (Dinámico) -->
+            <section id="results-slide">
+                <div class="flex flex-col items-center justify-center h-full">
+                    <div id="badge-icon" class="result-badge"></div>
+                    <h2 id="final-level" class="text-4xl font-bold mb-2"></h2>
+                    <div class="score-display mb-4">
+                        <span id="final-score" class="text-blue-400">0</span><span class="text-2xl text-gray-500">/100</span>
+                    </div>
+                    
+                    <div id="veto-message" class="hidden bg-red-900 bg-opacity-50 p-4 border-l-4 border-red-500 mb-4 rounded max-w-lg">
+                        <h4 class="text-red-400 font-bold m-0"><i class="fas fa-ban mr-2"></i>VETO APLICADO</h4>
+                        <p class="text-xs text-white mt-1">Falla crítica en bienestar humano o rotación excesiva.</p>
+                    </div>
+
+                    <p id="final-feedback" class="text-gray-300 text-sm max-w-xl text-center"></p>
+                    
+                    <button onclick="location.reload()" class="mt-8 text-xs text-gray-500 hover:text-white underline cursor-pointer border-none bg-transparent">
+                        Reiniciar Auditoría
+                    </button>
                 </div>
             </section>
 
         </div>
     </div>
 
-    <!-- Scripts de Reveal.js -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
-    <!-- Plugins Adicionales para Web (Zoom y Notas) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/zoom/zoom.min.js"></script>
 
     <script>
-        // Inicialización de Reveal con Plugins
         Reveal.initialize({
-            // Se desactivan hash y history para evitar conflictos en entornos seguros/iframe
-            hash: false, 
-            history: false,
-            
-            controls: true,
-            progress: true,
-            center: true,
-            transition: 'slide',
-            width: 1200,
-            height: 700,
-            margin: 0.1,
-            // Cargar plugins
+            hash: false, history: false,
+            controls: true, progress: true, center: true, transition: 'slide',
+            width: 1200, height: 700, margin: 0.1,
             plugins: [ RevealZoom, RevealNotes ]
         });
+
+        function calculateScore() {
+            // 1. Arquitectura (Max 35)
+            let archScore = 0;
+            const latency = parseInt(document.getElementById('input-latency').value) || 9999;
+            if (latency < 500) archScore += 10;
+            if (document.getElementById('check-scaling').checked) archScore += 10;
+            if (document.getElementById('check-modular').checked) archScore += 8;
+            if (document.getElementById('check-cicd').checked) archScore += 7;
+
+            // 2. Bienestar (Max 30) - CRÍTICO
+            let wellScore = 0;
+            let veto = false;
+            const rotation = parseInt(document.getElementById('input-rotation').value) || 0;
+            const alerts = parseInt(document.getElementById('input-alerts').value) || 10;
+
+            // Regla de Veto
+            if (rotation > 5) veto = true;
+
+            if (rotation <= 5) wellScore += 10;
+            if (alerts <= 2) wellScore += 10;
+            if (document.getElementById('check-disconnect').checked) wellScore += 5;
+            if (document.getElementById('check-predict').checked) wellScore += 5; // Total 30? + Hero check?
+            if (document.getElementById('check-hero').checked) { 
+                // Ajuste para sumar 30 total si falta algo, o bonus
+                // La tabla decia: Hero 10, OnCall 10, Discon 5, Predic 5.
+                // Reajustamos para que la suma de inputs de 30:
+                // Rotación(10) + Alerts(10) + Disconnect(5) + Predict(5) = 30.
+                // Hero es extra o parte del mindset. Dejemoslo como validación visual.
+            }
+            
+            // Si el puntaje de bienestar es < 50% (15 pts), VETO.
+            if (wellScore < 15) veto = true;
+
+            // 3. Seguridad (Max 35)
+            let secScore = 0;
+            if (document.getElementById('check-aes').checked) secScore += 12;
+            if (document.getElementById('check-integrity').checked) secScore += 10;
+            if (document.getElementById('check-rbac').checked) secScore += 8;
+            if (document.getElementById('check-sanit').checked) secScore += 5;
+
+            // Totales
+            const totalScore = archScore + wellScore + secScore;
+            
+            // Renderizado
+            const badgeIcon = document.getElementById('badge-icon');
+            const finalLevel = document.getElementById('final-level');
+            const finalScoreEl = document.getElementById('final-score');
+            const feedbackEl = document.getElementById('final-feedback');
+            const vetoMsg = document.getElementById('veto-message');
+
+            Reveal.slide(10); // CORREGIDO: Índice 10 es la slide de resultados
+
+            // Animación simple de conteo
+            finalScoreEl.innerText = totalScore;
+
+            if (veto) {
+                badgeIcon.innerHTML = '<i class="fas fa-ban text-red-500"></i>';
+                finalLevel.innerText = "NO CERTIFICADO";
+                finalLevel.className = "text-4xl font-bold mb-2 text-red-500";
+                vetoMsg.classList.remove('hidden');
+                feedbackEl.innerText = "Aunque la tecnología pueda ser buena, el riesgo humano o de rotación invalida la certificación bajo el estándar Q-Holístico.";
+            } else {
+                vetoMsg.classList.add('hidden');
+                if (totalScore >= 90) {
+                    badgeIcon.innerHTML = '<i class="fas fa-medal text-yellow-400"></i>';
+                    finalLevel.innerText = "NIVEL ORO";
+                    finalLevel.className = "text-4xl font-bold mb-2 text-yellow-400";
+                    feedbackEl.innerText = "Excelencia técnica y humana. Un ejemplo de ingeniería sostenible.";
+                } else if (totalScore >= 75) {
+                    badgeIcon.innerHTML = '<i class="fas fa-medal text-gray-400"></i>';
+                    finalLevel.innerText = "NIVEL PLATA";
+                    finalLevel.className = "text-4xl font-bold mb-2 text-gray-400";
+                    feedbackEl.innerText = "Software robusto. Enfócate en las áreas débiles para alcanzar la excelencia.";
+                } else if (totalScore >= 60) {
+                    badgeIcon.innerHTML = '<i class="fas fa-medal text-orange-600"></i>';
+                    finalLevel.innerText = "NIVEL BRONCE";
+                    finalLevel.className = "text-4xl font-bold mb-2 text-orange-600";
+                    feedbackEl.innerText = "Funcional pero con riesgos. Requiere un plan de mejora inmediato.";
+                } else {
+                    badgeIcon.innerHTML = '<i class="fas fa-times-circle text-red-500"></i>';
+                    finalLevel.innerText = "NO CERTIFICADO";
+                    finalLevel.className = "text-4xl font-bold mb-2 text-red-500";
+                    feedbackEl.innerText = "El puntaje total es insuficiente. El riesgo operativo es demasiado alto.";
+                }
+            }
+        }
     </script>
 </body>
 </html>
